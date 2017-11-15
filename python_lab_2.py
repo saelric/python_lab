@@ -145,6 +145,7 @@ def is_prime(n):
 
 
 def factorial(n):
+    import math
     """ 12: Return the factorial of n, an exact integer >= 0.
     If the result is small enough to fit in an int, return an int.
     Else return a long.
@@ -154,13 +155,18 @@ def factorial(n):
     >>> [factorial(long(n)) for n in range(6)]
     [1, 1, 2, 6, 24, 120]
     >>> factorial(30)
-    265252859812191058636308480000000L
+    265252859812191058636308480000000
     """
-    if n == 0:
-        return 1
-    else:
-        return n * factorial(n-1)
-
+    result = 1
+    factor = 2
+    #if n == 0:
+    #    return 1
+    #else:
+    #    return n * factorial(n-1)
+    while factor <= n:
+        result *= factor
+        factor += 1
+    return result
 
 def to_roman(n):
     """ 13: Convert number integer to Roman numeral
@@ -185,11 +191,16 @@ def rima(word1, word2):
 	>>> rima('flor', 'coliflor')
 	rima
 	>>> rima('amar', 'plantar')
-	rima un poco.
+	rima un poco
 	>>> rima('azucar', 'barrer')
 	no rima
 	"""
-
+	if word1[-3:]== word2[-3:]:
+		print("rima")
+	elif word1[-2:]== word2[-2:]:
+		print("rima un poco")
+	else:
+		print("no rima")
 
 def capital(pesos, interes, anios):
 	""" 15: Pide una cantidad de pesos, una tasa de interés y un numero de años. Muestra en cuanto se habrá convertido el
