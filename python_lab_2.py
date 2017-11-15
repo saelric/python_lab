@@ -27,10 +27,14 @@ def all_the_args(*args, **kwargs):
 
 	>>> all_the_args(1, 2, a=3, b=4)
     	(1, 2)
-    	{"a": 3, "b": 4}
+    	[['a', 3], ['b', 4]]
 	"""
+	lists=[]
 	print(args)
-	print(str(kwargs).replace('\'', '"'))
+	for key, value in sorted(kwargs.items()):
+		temp = [key,value]
+		lists.append(temp)
+	print(lists)
 
 def may_20 (*tup):
 	""" 3: Definir una tupla con 10 números. Imprimir la cantidad de números superiores a 20.
@@ -203,11 +207,12 @@ def rima(word1, word2):
 		print("no rima")
 
 def capital(pesos, interes, anios):
-	""" 15: Pide una cantidad de pesos, una tasa de interés y un numero de años. Muestra en cuanto se habrá convertido el
-	capital inicial transcurridos esos años si cada año se aplica la tasa de interés introducida.
+	""" 15: Pide una cantidad de pesos, una tasa de interés y un numero de años.
+	Muestra en cuanto se habrá convertido el capital inicial transcurridos esos
+	años si cada año se aplica la tasa de interés introducida.
 
 	>>> capital(10000, 4.5, 20)
 	24117.14
 	"""
-	resultado=pesos*(1+interes/100)**anios
+	resultado= pesos*(1 + interes/100)** anios
 	print(round(resultado, 2))
