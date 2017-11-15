@@ -2,28 +2,30 @@
 """ Repaso interactivo de python
 """
 
-def lower_up(lower,upper):
-	""" 1: Returns a list of numbers from the lower number to the upper number:
-	>>> lower_up(5,15)
-	5
-	6
-	7
-	8
-	9
-	10
-	11
-	12
-	13
-	14
-	15
-	"""
-	for x in range(lower,upper+1):
-		print(x)
+
+def lower_up(lower, upper):
+    """ 1: Returns a list of numbers from the lower number to the upper number:
+    >>> lower_up(5, 15)
+    5
+    6
+    7
+    8
+    9
+    10
+    11
+    12
+    13
+    14
+    15
+    """
+    for x in range(lower, upper+1):
+        print(x)
 
 
 def all_the_args(*args, **kwargs):
 
-	""" 2: Return an array. Use * to expand positional args and use ** to expand keyword args
+	""" 2: Return an array. Use * to expand positional
+	 args and use ** to expand keyword args
 
 	>>> all_the_args(1, 2, a=3, b=4)
     	(1, 2)
