@@ -210,4 +210,4 @@ def capital(pesos, interes, anios):
 	24117.14
 	"""
 	resultado=pesos*(1+interes/100)**anios
-	print(round(resultado,2))
+	print(round(resultado, 2))
