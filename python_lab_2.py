@@ -150,6 +150,7 @@ def square(lists):
 
 
 def is_prime(n):
+    import math
     """ 11:  Return if n is prime.
 
     >>> is_prime(5)
@@ -157,16 +158,9 @@ def is_prime(n):
     >>> is_prime(6)
     False
     """
-    if n > 1:
-        for i in range(2, n):
-            if (n % i) == 0:
-                print(False)
-                break
-            else:
-                print(True)
-                break
-        else:
-            print(False)
+    if n % 2 == 0 and n > 2:
+        return False
+    return all(n % i for i in range(3, int(math.sqrt(n)) + 1, 2))
 
 
 def factorial(n):
