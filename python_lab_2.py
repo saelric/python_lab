@@ -47,14 +47,16 @@ def may_20(*tup):
     22, 26, 27, 30
 
     """
-    y = ""
+    lists = []
     for x in tup:
-        if x > 20:
-            if y == "":
-                y = str(x)
-            else:
-                y = y + ', ' + str(x)
-    print(y)
+        lists.append(may_20_2(x))
+    y = str(list(filter(None, lists)))
+    print(y[1:-1])
+
+
+def may_20_2(x):
+    if x > 20:
+        return x
 
 
 def word_filter(list_of_words, n):
@@ -172,13 +174,11 @@ def factorial(n):
     >>> factorial(30)
     265252859812191058636308480000000
     """
-    result = int(math.long(1))
-    factor = 2
 
-    while factor <= n:
-        result *= factor
-        factor += 1
-    return result
+    if n == 0:
+        return 1
+    else:
+        return int(math.long(n)) * factorial(n-1)
 
 
 def to_roman(n):
