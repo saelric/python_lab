@@ -167,12 +167,12 @@ def factorial(n):
 
     >>> [factorial(n) for n in range(6)]
     [1, 1, 2, 6, 24, 120]
-    >>> [factorial(long(n)) for n in range(6)]
+    >>> [factorial(math.long(n)) for n in range(6)]
     [1, 1, 2, 6, 24, 120]
     >>> factorial(30)
     265252859812191058636308480000000
     """
-    result = 1
+    result = int(math.long(1))
     factor = 2
 
     while factor <= n:
