@@ -126,13 +126,18 @@ def contar_vocales(cadena):
     >>> contar_vocales('murcielago')
     5
     """
-    sum = 0
+    suma = 0
     for x in cadena:
-        if x == "a" or x == "e" or x == "i" or x == "o" or x == "u":
-            sum += 1
-        else:
-            pass
-    print(sum)
+        suma += contar_vocales_2(x)
+
+    print(suma)
+
+
+def contar_vocales_2(x):
+    if x == "a" or x == "e" or x == "i" or x == "o" or x == "u":
+        return 1
+    else:
+        return 0
 
 
 def square(lists):
