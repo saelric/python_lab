@@ -1,0 +1,234 @@
+CREATE DATABASE databasename;
+USE bookstore;
+
+CREATE TABLE Proveedor (
+id int IDENTITY(1,1) PRIMARY KEY,
+empresa VARCHAR(30) NOT NULL,
+direccion VARCHAR(30) NOT NULL,
+rfc VARCHAR(30) NOT NULL,
+correo VARCHAR(50),
+registro TIMESTAMP
+)
+
+CREATE TABLE categoria (
+id int IDENTITY(1,1) PRIMARY KEY,
+nombre VARCHAR(30) NOT NULL,
+registro TIMESTAMP
+)
+
+CREATE TABLE producto (
+
+id int IDENTITY(1,1) PRIMARY KEY,
+
+nombre VARCHAR(30) NOT NULL,
+
+proveedor_id int FOREIGN KEY REFERENCES proveedor(id),
+
+categoria_id int FOREIGN KEY REFERENCES categoria(id),
+
+precio_unidad VARCHAR(30) NOT NULL,
+
+disponible VARCHAR(1),
+
+registro TIMESTAMP
+
+
+)
+
+CREATE TABLE cliente (
+
+id int IDENTITY(1,1) PRIMARY KEY,
+
+nombre VARCHAR(30) NOT NULL,
+
+apellido_materno VARCHAR(30) NOT NULL,
+
+apellido_paterno VARCHAR(30) NOT NULL,
+
+rfc VARCHAR(13) NOT NULL,
+direccion VARCHAR(50) NOT NULL,
+
+ciudad VARCHAR(30) NOT NULL,
+
+estado VARCHAR(30) NOT NULL,
+
+pais VARCHAR(30) NOT NULL
+
+)
+
+CREATE TABLE sucursal (
+
+id int IDENTITY(1,1) PRIMARY KEY,
+
+nombre VARCHAR(30) NOT NULL,
+
+pais VARCHAR(30) NOT NULL,
+
+estado VARCHAR(30) NOT NULL,
+
+ciudad VARCHAR(50) NOT NULL,
+
+direccion VARCHAR(30) NOT NULL
+
+)
+
+CREATE TABLE Empleado (
+
+id int IDENTITY(1,1) PRIMARY KEY,
+
+nombre VARCHAR(30) NOT NULL,
+
+apellido_materno VARCHAR(30) NOT NULL,
+
+apellido_paterno VARCHAR(30) NOT NULL,
+
+ciudad VARCHAR(30) NOT NULL,
+
+pais VARCHAR(30) NOT NULL,
+
+sucursal_id int FOREIGN KEY REFERENCES sucursal(id),
+
+telefono VARCHAR(15) NOT NULL,
+
+registro TIMESTAMP
+
+)
+
+CREATE TABLE Paqueteria (
+
+id int IDENTITY(1,1) PRIMARY KEY,
+
+tipo_paqueteria VARCHAR(30) NOT NULL,
+
+registro TIMESTAMP
+
+)
+
+CREATE TABLE orden (
+
+id int IDENTITY(1,1) PRIMARY KEY,
+
+numero_orden VARCHAR(30) NOT NULL,
+
+fecha_orden TIMESTAMP,
+
+total FLOAT NOT NULL,
+
+cliente_id int FOREIGN KEY REFERENCES cliente(id),
+empleado_id int FOREIGN KEY REFERENCES empleado(id),
+paqueteria_id int FOREIGN KEY REFERENCES paqueteria(id),
+
+)
+
+CREATE TABLE Factura (
+
+id int IDENTITY(1,1) PRIMARY KEY,
+
+solicitada VARCHAR(1) NOT NULL,
+
+fecha_factura TIMESTAMP,
+
+orden_id int FOREIGN KEY REFERENCES orden(id),
+
+cliente_id int FOREIGN KEY REFERENCES cliente(id)
+
+)
+
+CREATE TABLE Detalle_Orden (
+id int IDENTITY(1,1) PRIMARY KEY,
+
+numero_orden VARCHAR(30) NOT NULL,
+
+fecha_orden TIMESTAMP,
+
+orden_id int FOREIGN KEY REFERENCES orden(id),
+
+producto_id int FOREIGN KEY REFERENCES producto(id),
+
+precio_unitario FLOAT NOT NULL,
+
+cantidad INT NOT NULL
+
+)
+
+
+USE bookstore
+INSERT INTO cliente(nombre, apellido_paterno, apellido_materno, rfc, direccion, ciudad, estado, pais)
+VALUES  ('Ana', 'Gonzalez', 'Lujan', 'GOJA200391w34', 'lima 123', 'Bogota', 'Cundinamarca', 'Colombia'),
+		('Maria', 'Guzman', 'Montoya', 'GUMM200391w34', 'Aristoteles 103', 'Bogota', 'Cundinamarca', 'Colombia'),
+		('Octavio', 'Torrez', 'Ortiz', 'TOOO200391w34', 'Gonzalez 1223', 'Bogota', 'Cundinamarca', 'Colombia'),
+		('German', 'Mendez', 'Rodriguez', 'MERG200391w34', 'Barba 1264', 'Bogota', 'Cundinamarca', 'Colombia'),
+		('Joaquin', 'Ortiz', 'Martinez', 'ORMJ200391w34', 'Las palmas 1003', 'Bogota', 'Cundinamarca', 'Colombia'),
+		('Roberta', 'Mendez', 'Ortiz', 'MEOR100391w34', 'Sotano 09', 'Medellin', 'Antioquia', 'Colombia'),
+		('Zulema', 'Sanchez', 'Martinez', 'SAMZ200391w34', 'Cocoa 345', 'Medellin', 'Antioquia', 'Colombia'),
+		('Rodrigo', 'Fernandez', 'Zuazua', 'FEZR200391w34', 'Sinsajo 909', 'Medellin', 'Antioquia', 'Colombia'),
+		('Patricia', 'Ortiz', 'Martinez', 'ORMP00391w34', 'Amarillo 475', 'Medellin', 'Antioquia', 'Colombia'),
+		('Jose', 'Rodriguez', 'Rodriguez', 'RORJ200391w34', 'Rio de Agua 502', 'Medellin', 'Antioquia', 'Colombia'),
+		('Maria', 'Cisneros', 'Zuazua', 'CIZM100391w34', 'Camarillo 888', 'Monterrey', 'Nuevo Leon', 'Mexico'),
+		('Rodolfo', 'Negrete', 'Peregrin', 'NEPR200391w34', 'Atenas 332', 'Monterrey', 'Nuevo Leon', 'Mexico'),
+		('Octavio', 'Negrete', 'Salazar', 'NESO200391w34', 'Alemania 765', 'Monterrey', 'Nuevo Leon', 'Mexico'),
+		('Paula', 'Gonzalez', 'Martinez', 'GOMP200391w34', 'Juez norte 109', 'Monterrey', 'Nuevo Leon', 'Mexico'),
+		('Mirna', 'Luna', 'Martinez', 'LUMM200391w34', 'Militar 677', 'Monterrey', 'Nuevo Leon', 'Mexico'),
+		('Luis', 'Inocencio', 'Salazar', 'GOMR200391w34', 'Unidad 1129', 'Guadalajara', 'Jalisco', 'Mexico'),
+		('Maria', 'Perez', 'Ulloa', 'PEUM200391w34', 'Josefa Ortiz 3911', 'Guadalajara', 'Jalisco', 'Mexico'),
+		('Roberto', 'Luna', 'Morin', 'LUMR200391w34', 'Los Arcos 1444', 'Guadalajara', 'Jalisco', 'Mexico'),
+		('Luis', 'Cisneros', 'Plata', 'CIPL200391w34', 'Esparta 2003', 'Guadalajara', 'Jalisco', 'Mexico'),
+		('Rodrigo', 'Montoya', 'Martinez', 'MOMR200391w34', 'Singapur 506', 'Guadalajara', 'Jalisco', 'Mexico'),
+		('Rodrigo', 'Sanchez', 'Morin', 'SAMR203391w34', 'Xamarin 223', 'Buenos Aires', 'Provincia de Buenos Aires', 'Argentina'),
+		('Sarai', 'Gonzalez', 'Lujan', 'GOJS200391w34', 'Julio Vargas 1344', 'Buenos Aires', 'Provincia de Buenos Aires', 'Argentina'),
+		('Alejandro', 'Montoya', 'Peregrin', 'MOPA200391w34', 'La plata 1128', 'Buenos Aires', 'Provincia de Buenos Aires', 'Argentina'),
+		('Alejandra', 'Davalos', 'Montoya', 'DAMA00391w34', 'Estrella 276', 'La Plata', 'Provincia de Buenos Aires', 'Argentina'),
+		('Luis', 'Davalos', 'Morin', 'DAML200391w34', 'Los soles 4067', 'La Plata', 'Provincia de Buenos Aires', 'Argentina'),
+		('German', 'Rodriguez', 'Plata', 'ROPG200391w34', 'Viva 1223', 'San Salvador', 'San Salvador', 'El Salvador'),
+		('Joaquin', 'Guzman', 'Morin', 'GUMG200391w34', 'Salud 345', 'San Salvador', 'San Salvador', 'El Salvador'),
+		('Octavio', 'Fernandez', 'Ulloa', 'FEUO200391w34', 'Silla 2033', 'San Salvador', 'San Salvador', 'El Salvador'),
+		('Patricia', 'Torrez', 'Zuazua', 'TOZP200391w34', 'Vidrio 8021', 'San Salvador', 'San Salvador', 'El Salvador'),
+		('Rodolfo', 'Inocencio', 'Martinez', 'INMR200391w34', 'Helio 2003', 'San Salvador', 'San Salvador', 'El Salvador');
+
+
+USE bookstore
+INSERT INTO sucursal(nombre, direccion, ciudad, estado, pais)
+VALUES  ('BookStore Sahara', 'Sahara 2109','Bogota', 'Cundinamarca', 'Colombia'),
+		('BookStore Medellin', 'San Jose 2b', 'Medellin', 'Antioquia', 'Colombia'),
+		('BookStore San Agustin', 'Plaza San Agustin Local 4', 'Monterrey', 'Nuevo Leon', 'Mexico'),
+		('BookStore Garibaldi', 'Roma 222 int 4', 'Guadalajara', 'Jalisco', 'Mexico'),
+		('BookStore Buenos Aires', 'Avenida Siempre Viva 114', 'Buenos Aires', 'Provincia de Buenos Aires', 'Argentina'),
+		('BookStore Silver', 'La Plata', 'Zaragoza ', 'Provincia de Buenos Aires', 'Argentina'),
+		('BookStore Salvador', 'San Constantino 222 int 14', 'San Salvador', 'San Salvador', 'El Salvador')
+
+
+USE bookstore
+INSERT INTO categoria(nombre, registro)
+VALUES  ('Novela', '07/01/2003 11:23:44'),
+        ('Historia', '12/12/2002 09:23:02'),
+        ('Biografia', '20/03/2002 12:00:00'),
+        ('Matematicas', '04/06/2003 11:20:16'),
+        ('Terror', '12/09/2003 08:23:09'),
+        ('Niños', '07/01/2003 11:23:44'),
+        ('Autoayuda', '07/01/2003 11:23:44'),
+        ('Ciencia Ficcion', '07/01/2003 11:23:44'),
+        ('Ilustraciones', '07/01/2003 11:23:44'),
+        ('Colorear', '07/01/2003 11:23:44'),
+        ('Informatica', '07/01/2003 11:23:44'),
+        ('Botanica', '07/01/2003 11:23:44'),
+        ('Animacion', '07/01/2003 11:23:44')
+
+
+USE bookstore
+INSERT INTO proveedor(empresa, direccion, rfc, correo, registro)
+VALUES  ('CelesteBooks', 'Cipres 203', 'CERO230991I32', 'ventas@celestebooks.com', '01/01/2002 08:00:00')
+        ('Libros Vivir', 'Lara 345', 'VIVI30041991F34', 'ventas@librosvivir.com', '01/01/2002 08:00:00')
+        ('Aragon', 'Guillermo 234', 'ARAM230504F78', 'ventas@Aragon.com', '01/01/2002 08:00:00')
+        ('Pentagono', 'Unidad 1130', 'PENT030600R44', 'ventas@Pentagono.com', '01/01/2002 08:00:00')
+        ('Fauno', 'Reina Isabel 514', 'FAUN080699W22', 'ventas@fauno.com', '01/01/2002 08:00:00')
+        ('Mypy', 'Artemisa 222 ', 'MYPY030202R66', 'ventas@mypy.com', '01/01/2002 08:00:00')
+        ('Manati', 'Citrus 667', 'MANA010101G22', 'ventas@manati.com', '01/01/2002 08:00:00')
+        ('Guayaba books', 'Siempre viva 333', 'GUBO310302', 'ventas@guayababooks.com', '01/01/2002 08:00:00')
+        ('Editorial Madrid', 'Cuadrilatero 838', 'EDMA150901J45', 'ventas@editorialmadrid.com', '01/01/2002 08:00:00')
+        ('Tamarindo', 'Sierra de Arteaga 333', 'TAMA23000E12', 'ventas@tamarindo.com', '01/01/2002 08:00:00')
+        ('Springer', 'Moctezuma 112', 'SPRIN300101F45', 'ventas@springer.com', '01/01/2002 08:00:00')
+        ('Porrua', 'Plaza Libertad 222', 'PORR030200V67', 'ventas@porrua.com', '01/01/2002 08:00:00')
+        ('Martin', 'San antonio 109', 'MART030199V45', 'ventas@martin.com', '01/01/2002 08:00:00')
+        ('Green Hill', 'Guillermina 302', 'GREE300900M20', 'ventas@greenhill.com', '01/01/2002 08:00:00')
+        ('8mile books', 'Guidalba 22B', 'MIBO281100B00', 'ventas@8milebooks.com', '01/01/2002 08:00:00')
+        ('Tamboo', 'Santa ana 343', 'TABO060696M45', 'ventas@tamboo.com', '01/01/2002 08:00:00')
