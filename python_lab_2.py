@@ -2,10 +2,11 @@ from typing import Tuple
 from typing import List
 from typing import Dict
 from typing import Any
-import math
+
 # -*- coding: utf-8 -*-
 """ Repaso interactivo de python
 """
+
 
 def lower_up(lower: int, upper: int) -> None:
     """ 1: Returns a list of numbers from the lower number to the upper number:
