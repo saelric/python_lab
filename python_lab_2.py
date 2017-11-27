@@ -2,6 +2,7 @@ from typing import Tuple
 from typing import List
 from typing import Dict
 from typing import Any
+import math
 # -*- coding: utf-8 -*-
 """ Repaso interactivo de python
 """
@@ -50,7 +51,8 @@ def may_20(*tup: int) -> None:
     22, 26, 27, 30
 
     """
-    lists: List[Any] = []
+    lists = []
+    
     for x in tup:
         lists.append(may_20_2(x))
     y = str(list(filter(None, lists)))
@@ -69,7 +71,8 @@ def word_filter(list_of_words: List[str], n: int) -> None:
     >>> word_filter(['hello','bye', 'computer', 'software', 'python'], 5)
     ['computer', 'software', 'python']
     """
-    lists = []
+    lists: List[str] = []
+
     for item in list_of_words:
         word_filter_2(item, lists, n)
 
@@ -168,7 +171,7 @@ def is_prime(n: int)-> bool:
     return all(n % i for i in range(3, int(math.sqrt(n)) + 1, 2))
 
 
-def factorial(n):
+def factorial(n: int) -> int:
     import math
     """ 12: Return the factorial of n, an exact integer >= 0.
     If the result is small enough to fit in an int, return an int.
@@ -185,7 +188,7 @@ def factorial(n):
     if n == 0:
         return 1
     else:
-        return int(math.long(n)) * factorial(n-1)
+        return n * factorial(n-1)
 
 
 def to_roman(n: int)-> str:
