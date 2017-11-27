@@ -52,7 +52,7 @@ def may_20(*tup: int) -> None:
 
     """
     lists = []
-    
+
     for x in tup:
         lists.append(may_20_2(x))
     y = str(list(filter(None, lists)))
@@ -71,7 +71,7 @@ def word_filter(list_of_words: List[str], n: int) -> None:
     >>> word_filter(['hello','bye', 'computer', 'software', 'python'], 5)
     ['computer', 'software', 'python']
     """
-    lists: List[str] = []
+    lists = []
 
     for item in list_of_words:
         word_filter_2(item, lists, n)
