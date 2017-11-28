@@ -4,10 +4,12 @@ python:
   - "3.5"
 # command to install dependencies
 install:
+  - sudo apt install python-logilab-common
   - pip install flake8
   - pip install coverage
   - pip install mypy
-  - pip install pycontracts
+  - pip3 install pycontracts
+  - pip3 install hypothesis
 script:
   - python -m doctest python_lab_2.py
   - flake8 python_lab_2.py
